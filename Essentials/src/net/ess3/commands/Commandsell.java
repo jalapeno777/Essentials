@@ -9,7 +9,7 @@ import net.ess3.utils.FormatUtil;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-
+import com.eaveecraft.businesscraft.Queries;
 
 public class Commandsell extends EssentialsCommand
 {
@@ -145,7 +145,8 @@ public class Commandsell extends EssentialsCommand
 		player.getInventory().removeItem(ris);
 		player.updateInventory();
 		Trade.log("Command", "Sell", "Item", user.getName(), new Trade(ris, ess), user.getName(), new Trade(worth * amount, ess), player.getLocation(), ess);
-		user.giveMoney(worth * amount);
+		//user.giveMoney(worth * amount);
+		Queries.payCompany(user.getName(), worth * amount);
 		user.sendMessage(
 				_(
 				"itemSold", FormatUtil.displayCurrency(worth * amount, ess), amount, is.getType().toString().toLowerCase(Locale.ENGLISH),
